@@ -1,0 +1,55 @@
+﻿<Window x:Class="TechFix.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TechFix"
+        mc:Ignorable="d"
+        Title="Авторизация" Height="500" Width="400" ResizeMode="NoResize">
+    <Grid>
+        <TabControl x:Name="TabControlAutoriz" SelectedIndex="0" Style="{StaticResource MainWinTB}">
+            <TabItem>
+                <Grid Background="{StaticResource MainColorApp}">
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="300px" Margin="0 30">
+                        <Image Source="/Images/seo.ico" Width="100"/>
+                        <TextBlock Text="Логин"/>
+                        <TextBox x:Name="LoginTBForAuth"/>
+                        <TextBlock Text="Пароль"/>
+                        <PasswordBox x:Name="PasswrodPBoxForAuth"/>
+                        <Button x:Name="EnterBtn" Content="Войти" Margin="0 10 0 0" Click="EnterBtn_Click"
+                                    Background="{StaticResource MainButtonBrush}" Width="200"/>
+                        <Button x:Name="RegistrBtn" Content="Зарегистрироваться" Margin="0 10 0 0" Click="RegistrBtn_Click" 
+                                    Background="{StaticResource MainButtonBrush}" Width="200"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem>
+                <Grid Background="{StaticResource MainColorApp}">
+                    <ScrollViewer Width="350px">
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="300" Margin="0 30">
+                            <TextBlock Text="Фамилия"/>
+                            <TextBox x:Name="SuranmeTB"/>
+                            <TextBlock Text="Имя"/>
+                            <TextBox x:Name="NameTB"/>
+                            <TextBlock Text="Отчество"/>
+                            <TextBox x:Name="PatronymicTB"/>
+                            <TextBlock Text="Номер телефона"/>
+                            <TextBox x:Name="NumberPhoneTB" MaxLength="11"/>
+                            <TextBlock Text="Email"/>
+                            <TextBox x:Name="EmailTB"/>
+                            <TextBlock Text="Логин"/>
+                            <TextBox x:Name="LoginTB"/>
+                            <TextBlock Text="Пароль"/>
+                            <PasswordBox x:Name="PasswordRegPBox"/>
+                            <TextBlock Text="Должность"/>
+                            <ComboBox x:Name="RolesCB" ItemsSource="{Binding Role}" DisplayMemberPath="Name" Margin="0 15 0 0"/>
+                            <Button x:Name="SaveBtn" Content="Сохранить" Margin="0 10 0 0" Click="SaveBtn_Click" Background="{StaticResource MainButtonBrush}"/>
+                            <Button x:Name="AuthorizationBtn" Content="Авторизоваться" Margin="0 10 0 0" Click="AuthorizationBtn_Click"
+                                    Background="{StaticResource MainButtonBrush}"/>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

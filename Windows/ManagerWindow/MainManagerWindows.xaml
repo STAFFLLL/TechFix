@@ -1,0 +1,373 @@
+﻿<Window x:Class="TechFix.Windows.ManagerWindow.MainManagerWindows"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TechFix.Windows.ManagerWindow"
+        mc:Ignorable="d"
+        Title="Главное окно" Height="450" 
+        Width="800" MinHeight="450" MinWidth="800" 
+        WindowStartupLocation="CenterOwner" 
+        WindowState="Maximized">
+    <Grid Background="{StaticResource Backgroud}">
+        <TabControl Background="{StaticResource Backgroud}">
+            <TabItem Header="Клиенты">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="20*"/>
+                        <ColumnDefinition Width="10px"/>
+                        <ColumnDefinition Width="80*"/>
+                    </Grid.ColumnDefinitions>
+                    <Rectangle Grid.Column="0" Margin="-15,0,0,0"/>
+                    <StackPanel Margin="30 0" Grid.Column="0">
+                        <TextBlock Text="Добавление клиента" HorizontalAlignment="Center" Style="{StaticResource StyleForMainHeader}"/>
+                            <TextBlock Text="Фамилия" Style="{StaticResource StyleForHeader}"/>
+                            <TextBox x:Name="SurnameClientTB" MaxLength="50"/>
+                            <TextBlock Text="Имя" Style="{StaticResource StyleForHeader}"/>
+                            <TextBox x:Name="NameClientTB" MaxLength="50"/>
+                            <TextBlock Text="Отчество" Style="{StaticResource StyleForHeader}"/>
+                            <TextBox x:Name="PatronymicClientTB" MaxLength="50"/>
+                            <TextBlock Text="Номер телефона" Style="{StaticResource StyleForHeader}"/>
+                            <TextBox x:Name="PhoneNumClientTB" MaxLength="15"/>
+                            <TextBlock Text="Почта" Style="{StaticResource StyleForHeader}"/>
+                            <TextBox x:Name="EmailClientTB" MaxLength="255"/>
+                            <TextBlock Text="Адрес" Style="{StaticResource StyleForHeader}"/>
+                            <TextBox x:Name="AddressClientTB" MaxLength="255"/>
+                            <Button x:Name="AddClientBtn" 
+                                    Content="Сохранить" 
+                                    Click="AddClientBtn_Click" 
+                                    Background="{StaticResource MainButtonBrush}"
+                                    Margin="0 15 0 0"/>
+                        </StackPanel>
+
+
+                    <Rectangle Grid.Column="2" Margin="0,0,-15,0"/>
+                    <StackPanel Grid.Column="2" Margin="30 0">
+                        <TextBlock Text="Список клиентов" HorizontalAlignment="Center" Style="{StaticResource StyleForMainHeader}"/>
+                        <DataGrid  x:Name="ListClient">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname}" Width="1*"/>
+                            <DataGridTextColumn Header="Имя" Binding="{Binding Name}" Width="1*"/>
+                            <DataGridTextColumn Header="Отчество" Binding="{Binding Patronymic}" Width="1*"/>
+                            <DataGridTextColumn Header="Номер телефона" Binding="{Binding PhoneNumber}" Width="1*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    </StackPanel>
+                    
+                    
+                </Grid>
+            </TabItem>
+            <TabItem Header="Создание заявки" >
+                <Grid Margin="30 0 30 30">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="115"/>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition Height="70*"/>
+                        <RowDefinition Height="50px"/>
+                    </Grid.RowDefinitions>
+
+                    <Rectangle Grid.Row="0" Margin="-5 -15 -5 -15"/>
+                    <Rectangle Grid.Row="1" Margin="-5 30 -5 -15"/>
+                    <Rectangle Grid.Row="2" Margin="-5 30 -5 -15"/>
+                    <StackPanel Grid.Row="0">
+                        <TextBlock Text="Создание заявки" HorizontalAlignment="Center" Style="{StaticResource StyleForMainHeader}"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="10px"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Column="0">
+                                <TextBlock Text="Клиент"/>
+                                <ComboBox x:Name="SelectionClientCM" 
+                                    IsEditable="True"
+                                    IsTextSearchEnabled="True" 
+                                      ItemsSource="{Binding Client}" 
+                                      TextSearch.TextPath="Surname">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding Surname}" Margin="0 0 5 0"/>
+                                                <TextBlock Text="{Binding Name}" Margin="0 0 5 0"/>
+                                                <TextBlock Text="{Binding Patronymic}" Margin="0 0 5 0"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="2">
+                                <TextBlock Text="Описание проблемы"/>
+                                <TextBox x:Name="ProblemDescriptionTB"/>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="1" Margin="0 30 0 0">
+                        <TextBlock Text="Услуга" Style="{StaticResource StyleForMainHeader}" 
+                                HorizontalAlignment="Center" Margin="0 0 0 0"/>
+                        <StackPanel Orientation="Horizontal" Margin="0 0 0 7">
+                            <TextBlock Text="Поиск по названию:" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                            <TextBox x:Name="SearchTextServiceTB" 
+                                Width="150px" TextChanged="SearchTextServiceTB_TextChanged"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <Grid Grid.Row="2" Margin="0 45 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="10px"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <DataGrid x:Name="ListServiceDG" IsReadOnly="True" BorderThickness="0">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Услуга" Binding="{Binding Name}" Width="1*"/>
+                                <DataGridTextColumn Header="Стоимость" Binding="{Binding Cost}" Width="1*"/>
+                                <DataGridTemplateColumn  Width="100">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button x:Name="AddServiceBtn" Content="Добавить" Click="AddServiceBtn_Click" Background="{StaticResource MainButtonBrush}"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <DataGrid x:Name="SelectedServiceDG" Margin="0 0 0 7" Grid.Column="2" BorderThickness="0">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Услуга" Binding="{Binding Name}" Width="1*"/>
+                                <DataGridTextColumn Header="Стоимость" Binding="{Binding Cost}" Width="1*"/>
+                                <DataGridTemplateColumn  Width="100">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button x:Name="DeleteServiceBtn" Content="Удалить" Click="DeleteServiceBtn_Click" Background="{StaticResource ImportantButtonBrush}"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                    <Button x:Name="SaveApplicatrionBtn" Content="Создать" 
+                            Click="SaveApplicatrionBtn_Click"
+                            Background="{StaticResource MainButtonBrush}" Width="150" 
+                            HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="3"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Список заявок">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50px"/>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Rectangle Margin="30 -15 30 0" Grid.Row="0" Grid.RowSpan="2"/>
+                    <Rectangle Margin="30 50 30 0" Grid.Row="2"/>
+                    <TextBlock Text="Список невыполненных заявок" Style="{StaticResource StyleForMainHeader}" HorizontalAlignment="Center"/>
+                    <Grid Grid.Row="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50px"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="35 0">
+                            <TextBlock Text="Поиск:" VerticalAlignment="Center" Margin="0 0 5 0"/>
+                            <TextBox Width="200" x:Name="SearchTextBox" TextChanged="SearchTextBox_TextChanged"/>
+                        </StackPanel>
+                        <DataGrid x:Name="OutstandApplicationDataGrid" 
+                            Grid.Row="1"
+                            Margin="35 15 35 0">
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn Header="Клиент" Width="1*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding Client.Surname}" Margin="0 0 5 0"/>
+                                                <TextBlock Text="{Binding Client.Name}" Margin="0 0 5 0"/>
+                                                <TextBlock Text="{Binding Client.Patronymic}"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Header="Дата создания" Width="1*" Binding="{Binding DateOfCreation}"/>
+                                <DataGridTextColumn Header="Стоимость" Width="1*" Binding="{Binding TotalCost}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Назначение мастера">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30*"/>
+                        <ColumnDefinition Width="10px"/>
+                        <ColumnDefinition Width="70*"/>
+                    </Grid.ColumnDefinitions>
+                    <Rectangle Margin="-15 0 0 0" Grid.Column="0"/>
+                    <Rectangle Margin="0 0 -15 0" Grid.Column="2"/>
+                    <Grid Grid.Column="0" Margin="30 0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="55"/>
+                            <RowDefinition Height="10"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="10"/>
+                            <RowDefinition Height="55"/>
+                            <RowDefinition Height="150"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Требуется назначение" Style="{StaticResource StyleForMainHeader}" HorizontalAlignment="Center" Grid.Row="0"/>
+                        <DataGrid x:Name="ApplicationsWithoutMaster" Background="{x:Null}" SelectionChanged="ApplicationsWithoutMaster_SelectionChanged" Grid.Row="2" BorderThickness="0">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Дата создания" Width="150" Binding="{Binding DateOfCreation}"/>
+                                <DataGridTemplateColumn Header="Клиент" Width="1*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding Client.Surname}" Margin="0 0 5 0"/>
+                                                <TextBlock Text="{Binding Client.Name}" Margin="0 0 5 0"/>
+                                                <TextBlock Text="{Binding Client.Patronymic}" Margin="0 0 5 0"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                        <TextBlock Text="Выбранная заявка:" TextWrapping="Wrap" Style="{StaticResource StyleForMainHeader}" Grid.Row="4"/>
+                        <TextBlock x:Name="SelectedAppTextBlock" Grid.Row="5"/>
+                    </Grid>
+
+                    <StackPanel Grid.Column="2" Margin="30 0">
+                        <TextBlock Text="Список мастеров" Style="{StaticResource StyleForMainHeader}" HorizontalAlignment="Center"/>
+                        <DataGrid x:Name="MastersDataGrid" SelectionChanged="MastersDataGrid_SelectionChanged">
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn Header="Мастер">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding Surname}" Margin="0 0 5 0"/>
+                                                    <TextBlock Text="{Binding Name}" Margin="0 0 5 0"/>
+                                                    <TextBlock Text="{Binding Patronymic}" Margin="0 0 5 0"/>
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                        <TextBlock Text="Выбранный мастер:" Style="{StaticResource StyleForMainHeader}"/>
+                        <TextBlock x:Name="SelectedMasterTextBlock" FontSize="20"/>
+                        <Button Content = "Назначить" x:Name="AppointMaster" 
+                                Click="AppointMaster_Click" Background="{StaticResource MainButtonBrush}" Width="150" HorizontalAlignment="Right"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Оплата заявки">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30*"/>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="70*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="90*"/>
+                        <RowDefinition Height="10*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <Rectangle Margin="-15 0 0 0"/>
+                    <Rectangle Margin="0 0 -15 0" Grid.Column="2"/>
+ 
+                    <StackPanel Grid.Column="0" Grid.Row="0" Margin="30 0">
+                        <TextBlock Text="Выбор клиента для оплаты" Style="{StaticResource StyleForMainHeader}" HorizontalAlignment="Center"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="Клиент"/>
+                            <ComboBox Grid.Column="1" x:Name="ClientsComboBox" 
+                                      IsTextSearchEnabled="True" 
+                                      ItemsSource="{Binding Client}" 
+                                      IsEditable="True"
+                                      TextSearch.TextPath="Surname" SelectionChanged="ClientsComboBox_SelectionChanged">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Surname}" Margin="0 0 5 0"/>
+                                            <TextBlock Text="{Binding Name}" Margin="0 0 5 0"/>
+                                            <TextBlock Text="{Binding Patronymic}" Margin="0 0 5 0"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </Grid>
+                        <TextBlock Text="Способ оплаты"/>
+                        <ComboBox x:Name="PaymentMethodCB" ItemsSource="{Binding PaymentMethod}" DisplayMemberPath="Name"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30*"/>
+                                <ColumnDefinition Width="5"/>
+                                <ColumnDefinition Width="70*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Итого:" Grid.Column="0"/>
+                            <TextBlock x:Name="TotalCostApplication" Grid.Column="2"/>
+                        </Grid>
+                        <Button x:Name="PayApplicationButton" Content="Оплатить" 
+                                Click="PayApplicationButton_Click"
+                                Margin="0 5 0 0"
+                                Width="100"
+                                HorizontalAlignment="Left"
+                                Background="{StaticResource SucButtonBrush}"/>
+                    </StackPanel>
+
+                    <Grid Grid.Column="2" Margin="30 0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="50"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Список выполненных заявок" 
+                                   Style="{StaticResource StyleForMainHeader}" 
+                                   HorizontalAlignment="Center"
+                                   Grid.Row="0"/>
+                        <DataGrid x:Name="CompletedAppDataGrid" 
+                                  SelectionChanged="CompletedAppDataGrid_SelectionChanged"
+                                  Grid.Row="1">
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn Header="Клиент" Width="1*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding Client.Surname}" Margin="0 0 5 0"/>
+                                                <TextBlock Text="{Binding Client.Name}" Margin="0 0 5 0"/>
+                                                <TextBlock Text="{Binding Client.Patronymic}"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Header="Дата создания" Width="1*" Binding="{Binding DateOfCreation}"/>
+                                <DataGridTextColumn Header="Стоимость" Width="1*" Binding="{Binding TotalCost}"/>
+                                <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="Доработка" x:Name="OrganizeRevisionButton" Click="OrganizeRevisionButton_Click"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Button Content="Обновить" 
+                                x:Name="UpdateCompletedApplicationButton"
+                                HorizontalAlignment="Right"
+                                Grid.Row="2"
+                                Height="30"
+                                Background="{StaticResource MainButtonBrush}"
+                                Click="UpdateCompletedApplicationButton_Click"/>
+                    </Grid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

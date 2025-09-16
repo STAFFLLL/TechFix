@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="964e900253d441e9ad77133b06489e5e" Name="Diagram1">
+        <EntityTypeShape EntityType="TechFixDatabaseModel.Application" Width="1.5" PointX="5.25" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechFixDatabaseModel.ApplicationStatus" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechFixDatabaseModel.Client" Width="1.5" PointX="3" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechFixDatabaseModel.Employee" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechFixDatabaseModel.MasterInApplication" Width="1.5" PointX="7.5" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechFixDatabaseModel.PaymentMethod" Width="1.5" PointX="3" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechFixDatabaseModel.Role" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechFixDatabaseModel.Service" Width="1.5" PointX="5.25" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechFixDatabaseModel.ServicesInTheApplication" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechFixDatabaseModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
+        <AssociationConnector Association="TechFixDatabaseModel.FK_Application_ApplicationStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="TechFixDatabaseModel.FK_Application_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="TechFixDatabaseModel.FK_Application_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="TechFixDatabaseModel.FK_Application_PaymentMethod" ManuallyRouted="false" />
+        <AssociationConnector Association="TechFixDatabaseModel.FK_MasterInApplication_Application1" ManuallyRouted="false" />
+        <AssociationConnector Association="TechFixDatabaseModel.FK_ServicesInTheApplication_Application" ManuallyRouted="false" />
+        <AssociationConnector Association="TechFixDatabaseModel.FK_Employee_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="TechFixDatabaseModel.FK_MasterInApplication_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="TechFixDatabaseModel.FK_ServicesInTheApplication_Service" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

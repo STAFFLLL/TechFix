@@ -1,0 +1,34 @@
+﻿<Window x:Class="TechFix.Windows.ManagerWindow.FindReasonWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TechFix.Windows.ManagerWindow"
+        mc:Ignorable="d"
+        Title="Оформление доработки" Height="450" Width="800" ResizeMode="NoResize">
+    <Grid Background="{StaticResource Backgroud}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Rectangle Grid.RowSpan="3" Grid.Row="0" Margin="30 0"/>
+        <TextBlock Text="Укажите причину доработки" 
+                   Style="{StaticResource StyleForMainHeader}" 
+                   HorizontalAlignment="Center" 
+                   Grid.Row="0"
+                    Margin="30 0"/>
+        <TextBox Grid.Row="1"
+                 x:Name="ReasonTextBox"
+                 Margin="50 0 50 0"/>
+        <Button Grid.Row="2" 
+                Width="100" 
+                Height="30" 
+                Content="Сохранить" 
+                Click="SaveReasonApplication_Click"
+                x:Name="SaveReasonApplication"
+                Background="{StaticResource MainButtonBrush}"
+                HorizontalAlignment="Right" Margin="50 0 50 0"/>
+    </Grid>
+</Window>
+ 

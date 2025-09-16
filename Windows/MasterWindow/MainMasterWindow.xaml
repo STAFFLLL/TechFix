@@ -1,0 +1,102 @@
+﻿<Window x:Class="TechFix.Windows.MasterWindow.MainMasterWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TechFix.Windows.MasterWindow"
+        mc:Ignorable="d"
+        Title="Главное окно" Height="450" 
+        Width="800" MinHeight="450" MinWidth="800" 
+        WindowStartupLocation="CenterOwner" 
+        WindowState="Maximized"
+        Background="{StaticResource Backgroud}">
+    <Window.Resources>
+        <CollectionViewSource x:Key="Statuses" Source="{Binding ApplicationStatuses}"/>
+    </Window.Resources>
+    <Grid>
+        <TabControl>
+            <TabItem Header="Завки в работе">
+                <Grid Background="{StaticResource Backgroud}">
+                    <Rectangle Margin="30"/>
+                    <DataGrid x:Name="ApplicationsDataGrid" Margin="35">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="Клиент" Width="20*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Client.Surname}" Margin="0 0 5 0"/>
+                                            <TextBlock Text="{Binding Client.Name}" Margin="0 0 5 0"/>
+                                            <TextBlock Text="{Binding Client.Patronymic}" Margin="0 0 5 0"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Header="Дата создания" Binding="{Binding DateOfCreation, StringFormat='dd.MM.yyyy'}" Width="20*"/>
+                            <DataGridTextColumn Header="Описание проблемы" Binding="{Binding ProblemDescription}" Width="50*"/>
+                            <DataGridTextColumn Header="Статус" Binding="{Binding ApplicationStatus.Name}" Width="10*"/>
+                        </DataGrid.Columns>
+                        <DataGrid.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Написать комментарий/Изменить статус" 
+                                          ToolTip="Для изменения статуса или написания комментарий нажмите на кнопку" 
+                                          x:Name="ChagneApplicationButton" 
+                                          Click="ChagneApplicationButton_Click"/>
+                            </ContextMenu>
+                        </DataGrid.ContextMenu>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Поступившие заявки">
+                <Grid Background="{StaticResource Backgroud}">
+                    <Rectangle Margin="30"/>
+                    <DataGrid x:Name="NewApplicationsDataGrid" Margin="35">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="Клиент" Width="25*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Client.Surname}" Margin="0 0 5 0"/>
+                                            <TextBlock Text="{Binding Client.Name}" Margin="0 0 5 0"/>
+                                            <TextBlock Text="{Binding Client.Patronymic}" Margin="0 0 5 0"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Header="Дата создания" Binding="{Binding DateOfCreation, StringFormat='dd.MM.yyyy'}" Width="25*"/>
+                            <DataGridTextColumn Header="Описание проблемы" Binding="{Binding ProblemDescription}" Width="50*"/>
+                            <DataGridTemplateColumn Width="100">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button x:Name="StartWordButton" Content="Начать работу" Click="StartWordButton_Click" Background="{StaticResource MainButtonBrush}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Выполненые заявки">
+                <Grid Background="{StaticResource Backgroud}">
+                    <Rectangle Margin="30"/>
+                    <DataGrid x:Name="CompletedApplicationsDataGrid" Margin="35">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="Клиент" Width="20*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Client.Surname}" Margin="0 0 5 0"/>
+                                            <TextBlock Text="{Binding Client.Name}" Margin="0 0 5 0"/>
+                                            <TextBlock Text="{Binding Client.Patronymic}" Margin="0 0 5 0"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Header="Дата создания" Binding="{Binding DateOfCreation, StringFormat='dd.MM.yyyy'}" Width="20*"/>
+                            <DataGridTextColumn Header="Описание проблемы" Binding="{Binding ProblemDescription}" Width="60*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
